@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <!-- pages-title-start -->
+    <div class="pages-title section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pages-title-text text-center">
+                        <h2>Cart</h2>
+                        <ul class="text-left">
+                            <li><a href="../../core/templates/index.html">Home </a></li>
+                            <li><span> // </span>Cart</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pages-title-end -->
+    <!-- cart content section start -->
+    <section class="pages cart-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive padding60">
+                        <table class="wishlist-table text-center">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>quantity</th>
+                                <th>Total Price</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in items %}
+                                <tr data-id="{{ item.id }}" data-product="{{ item.product.id }}"
+                                    data-price="{{ item.product.price|floatformat:2 }}">
+                                    <td class="td-img text-left">
+                                        <a href="#"><img height="100" width="100"
+                                                         src="../../static/img/{{ item.product.image }}"
+                                                         alt="Add Product"/></a>
+                                        <div class="items-dsc">
+                                            <h5><a href="#">{{ item.product.title }}</a></h5>
+                                            <p class="itemcolor">Color : <span>{% for color in item.product.color.all %}
+                                                {{ color }} {% endfor %}</span></p>
+                                            <p class="itemcolor">Size : <span>{% for size in item.product.size.all %}
+                                                {{ size }} {% endfor %}</span></p>
+                                        </div>
+                                    </td>
+                                    <td>${{ item.product.price|floatformat:2 }}</td>
+                                    <td class="plus-minus">
+                                        <a class="dec qtybutton update-cart"
+                                           data-action="remove">-</a>
+                                        <input type="text" value="{{ item.quantity }}"
+                                               name="qtybutton"
+                                               class="item-quantity">
+                                        <a class="inc qtybutton update-cart"
+                                           data-action="add">+</a>
+                                    </td>
+                                    <td class="salam">
+                                        <strong class="item-total-price">${{ item.get_total|floatformat:2 }}</strong>
+                                    </td>
+                                    <td>
+                                        <a class="update-cart"
+                                           data-product="{{ item.product.id }}"
+                                           data-action="delete"><i class="mdi mdi-close"
+                                                                                           title="Remove this product"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+                            <tr>
+                                <th><h5 style="margin-top: 30px">Items: <strong>{{ order.get_cart_items }}</strong></h5>
+                                </th>
+                                <th><h5 style="margin-top: 30px">Total:<strong>
+                                    ${{ order.get_cart_total|floatformat:2 }}</strong></h5></th>
+                                <th>
+                                    <a style="float:right; margin:5px; margin-top: 30px" class="btn btn-success"
+                                       href="{% url 'checkout' %}">Checkout</a>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+{#            <div class="row margin-top">#}
+{#                <div class="col-sm-6">#}
+{#                    <div class="single-cart-form padding60">#}
+{#                        <div class="log-title">#}
+{#                            <h3><strong>coupon discount</strong></h3>#}
+{#                        </div>#}
+{#                        <div class="cart-form-text custom-input">#}
+{#                            <p>Enter your coupon code if you have one!</p>#}
+{#                            <form action="" method="post">#}
+{#                                <input type="text" name="subject" placeholder="Enter your code here..."/>#}
+{#                                <div class="submit-text coupon">#}
+{#                                    <button type="submit">apply coupon</button>#}
+{#                                </div>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                    <div class="single-cart-form padding60">#}
+{#                        <div class="log-title">#}
+{#                            <h3><strong>payment details</strong></h3>#}
+{#                        </div>#}
+{#                        <div class="cart-form-text pay-details table-responsive">#}
+{#                            <table>#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Cart Subtotal</th>#}
+{#                                    <td>$155.00</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <th>Shipping and Handing</th>#}
+{#                                    <td>$15.00</td>#}
+{#                                </tr>#}
+{#                                <tr>#}
+{#                                    <th>Vat</th>#}
+{#                                    <td>$00.00</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                                <tfoot>#}
+{#                                <tr>#}
+{#                                    <th class="tfoot-padd">Order total</th>#}
+{#                                    <td class="tfoot-padd">$170.00</td>#}
+{#                                </tr>#}
+{#                                </tfoot>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row margin-top">#}
+{#                <div class="col-xs-12">#}
+{#                    <div class="padding60">#}
+{#                        <div class="row">#}
+{#                            <div class="col-xs-12 col-sm-6 col-md-4">#}
+{#                                <div class="single-cart-form">#}
+{#                                    <div class="log-title">#}
+{#                                        <h3><strong>calculate shipping</strong></h3>#}
+{#                                    </div>#}
+{#                                    <div class="cart-form-text custom-input">#}
+{#                                        <p>Enter your coupon code if you have one!</p>#}
+{#                                        <form action="mail.php" method="post">#}
+{#                                            <input type="text" name="country" placeholder="Country"/>#}
+{#                                            <div class="submit-text">#}
+{#                                                <button type="submit">get a quote</button>#}
+{#                                            </div>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-xs-12 col-sm-6 col-md-4">#}
+{#                                <div class="single-cart-form">#}
+{#                                    <div class="cart-form-text post-state custom-input">#}
+{#                                        <form action="mail.php" method="post">#}
+{#                                            <input type="text" name="state" placeholder="Region / State"/>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-xs-12 col-sm-6 col-md-4">#}
+{#                                <div class="single-cart-form">#}
+{#                                    <div class="cart-form-text post-state custom-input">#}
+{#                                        <form action="mail.php" method="post">#}
+{#                                            <input type="text" name="subject" placeholder="Post Code"/>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    </section>
+    <!-- cart content section end -->
+
+{% endblock %}

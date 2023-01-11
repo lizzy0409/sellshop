@@ -1,0 +1,8 @@
+<form action="" method="post">
+    {% csrf_token %}
+    {{ contact_form }}
+{#    <input type="text" name="name" placeholder="Enter your Name..."/>#}
+{#    <input type="text" name="email" placeholder="Enter your email..."/>#}
+{#    <textarea name="message" rows="2" placeholder="Enter your message...."></textarea>#}
+    <input type="submit" value="send your message"/>
+</form>

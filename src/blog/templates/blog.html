@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <!-- pages-title-start -->
+    <div class="pages-title section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pages-title-text text-center">
+                        <h2>Blog</h2>
+                        <ul class="text-left">
+                            <li><a href="../../core/templates/index.html">Home </a></li>
+                            <li><span> // </span>Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pages-title-end -->
+    <!-- blog section start -->
+    <section class="latest-blog section-padding">
+        <div class="container">
+            <ul class="blog-row clearfix">
+                <li>
+                    <div class="row">
+                        {% for blog in  blogs %}
+                            <div style="margin-top: 40px" class="col-sm-4 col-md-4">
+                                <div class="l-blog-text">
+                                    <div class="banner"><a href="{% url 'singleblog' blog.id %}"><img height="300px"
+                                                                                                      width="554px"
+                                                                                                      src="static/img/{{ blog.image }}"
+                                                                                                      alt=""/></a></div>
+                                    <div class="s-blog-text">
+                                        <h4><a href="{% url 'singleblog' blog.id %}">{{ blog.title }}</a></h4>
+                                        <span>By : <a href="{{ blog.author.id }}">{{ blog.author }}</a> | <a
+                                                href="#">{{ blog.no_of_likes }} Like</a> | <a
+                                                href="#">{{ blog.no_of_comments }} Comments</a></span>
+                                        <p>{{ blog.desc|slice:":150" }}. . .</p>
+                                    </div>
+                                    <div class="date-read clearfix">
+                                        <a href="#"><i class="mdi mdi-clock"></i> {{ blog.published_date }}</a>
+                                        <a href="{% url 'singleblog' blog.id %}">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pagnation-ul">
+                        <ul class="clearfix">
+                            {% if blogs.has_previous %}
+                                <a href="?page=1"><i class="mdi mdi-menu-left"></i></a>
+                                <a href="?page={{ blogs.previous_page_number }}">Previous</a>
+                            {% endif %}
+                            Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+
+                            {% if blogs.has_next %}
+                                <a href="?page={{ blogs.next_page_number }}">Next</a>
+                                <a href="?page={{ blogs.paginator.num_pages }}"><i
+                                        class="mdi mdi-menu-right"></i></a>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog section end -->
+
+{% endblock %}

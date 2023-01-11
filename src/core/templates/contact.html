@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+        <!-- pages-title-start -->
+		<div class="pages-title section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pages-title-text text-center">
+							<h2>Contact Us</h2>
+							<ul class="text-left">
+								<li><a href="index.html">Home </a></li>
+								<li><span> // </span>Contact Us</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- pages-title-end -->
+		<!-- contact content section start -->
+		<div class="pages contact-page section-padding">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="googleMap-info">
+							<div id="googleMap"></div>
+							<div class="map-info">
+								<p><strong>Sellshop</strong></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-10 col-text-center">
+						<div class="contact-details">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="single-contact">
+										<i class="mdi mdi-map-marker"></i>
+										<p>{{ contact_detail.location }}</p>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="single-contact">
+										<i class="mdi mdi-phone"></i>
+										<p>{{ contact_detail.phone_number }}</p>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="single-contact">
+										<i class="mdi mdi-email"></i>
+										<p>{{ contact_detail.email }}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- contact content section end -->
+{% endblock %}

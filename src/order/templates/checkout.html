@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <!-- pages-title-start -->
+    <div class="pages-title section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pages-title-text text-center">
+                        <h2>Chcekout</h2>
+                        <ul class="text-left">
+                            <li><a href="../../core/templates/index.html">Home </a></li>
+                            <li><span> // </span>Chcekout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pages-title-end -->
+    <!-- Checkout content section start -->
+    <section class="pages checkout section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="main-input single-cart-form padding60">
+                        <div class="log-title">
+                            <h3><strong>billing details</strong></h3>
+                        </div>
+                        <div class="custom-input">
+                            <form id="billing-form">
+                                <div id="user-info">
+                                    <div class="form-field">
+                                        <input required class="form-control" type="text" name="name"
+                                               placeholder="Name..">
+                                    </div>
+                                    <div class="form-field">
+                                        <input required class="form-control" type="number" name="number"
+                                               placeholder="Number..">
+                                    </div>
+                                </div>
+
+                                <div id="shipping-info">
+                                    <div class="form-field">
+                                        <input class="form-control" type="text" name="country" placeholder="Country..">
+                                    </div>
+                                    <div class="form-field">
+                                        <input class="form-control" type="text" name="address" placeholder="Address..">
+                                    </div>
+                                    <div class="form-field">
+                                        <input class="form-control" type="text" name="city" placeholder="City..">
+                                    </div>
+                                    <div class="form-field">
+                                        <input class="form-control" type="text" name="state" placeholder="State..">
+                                    </div>
+                                    <div class="form-field">
+                                        <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                                    </div>
+                                </div>
+                                <div id="billing-submit" style="margin-top: 20px" class="submit-text">
+                                    <input type="submit" value="Continue">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="padding60">
+                            <div class="log-title">
+                                <h3><strong>Our order</strong></h3>
+                            </div>
+                            <div class="cart-form-text pay-details table-responsive">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <td>Total</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in items %}
+                                        <tr>
+                                            <th>{{ item.product.title }} x {{ item.quantity }}</th>
+                                            <td>${{ item.get_total|floatformat:2 }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Order total</th>
+                                        <td>${{ order.get_cart_total|floatformat:2 }}</td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="place-order" class="col-xs-12 col-sm-6 margin-top hidden">
+                <div class="padding60">
+                    <div class="log-title">
+                        <h3><strong>Payment method</strong></h3>
+                    </div>
+                    <div class="categories">
+                        <ul id="accordion" class="panel-group clearfix">
+                            <li class="panel">
+                                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
+                                    <div class="medium-a">
+                                        direct bank transfer
+                                    </div>
+                                </div>
+                                <div class="panel-collapse collapse in" id="collapse1">
+                                    <div class="normal-a">
+                                        <p>Lorem Ipsum is simply in dummy text of the printing and typesetting
+                                            industry. Lorem Ipsum has been the industry.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="panel">
+                                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">
+                                    <div class="medium-a">
+                                        cheque payment
+                                    </div>
+                                </div>
+                                <div class="paypal-dsc panel-collapse collapse" id="collapse2">
+                                    <div class="normal-a">
+                                        <p>Lorem Ipsum is simply in dummy text of the printing and typesetting
+                                            industry. Lorem Ipsum has been the industry.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="panel">
+                                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
+                                    <div class="medium-a">
+                                        paypal
+                                    </div>
+                                </div>
+                                <div class="paypal-dsc panel-collapse collapse" id="collapse3">
+                                    <div class="normal-a">
+                                        <p>Lorem Ipsum is simply in dummy text of the printing and typesetting
+                                            industry. Lorem Ipsum has been the industry.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div id="order-submit-btn" class="submit-text">
+                            <a href="#">place order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout content section end -->
+    <script type="text/javascript">
+        let total = '{{ order.get_cart_total }}'
+        let bill_form = document.getElementById('billing-form')
+        console.log('BILLL-FORMM', bill_form)
+
+        bill_form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            console.log('Form submitted...')
+            document.getElementById('billing-submit').classList.add('hidden')
+            document.getElementById('place-order').classList.remove('hidden')
+        })
+
+        document.getElementById('order-submit-btn').addEventListener('click', function (e) {
+            submitFormData()
+        })
+
+
+        function submitFormData() {
+            console.log("Payment button clicked..")
+
+            let userFormData = {
+                'name': null,
+                'number': null,
+                'total': total,
+            }
+
+            let shippingInfo = {
+                'country': null,
+                'address': null,
+                'city': null,
+                'state': null,
+                'zipcode': null,
+            }
+
+            shippingInfo.country = bill_form.country.value
+            shippingInfo.address = bill_form.address.value
+            shippingInfo.city = bill_form.city.value
+            shippingInfo.state = bill_form.state.value
+            shippingInfo.zipcode = bill_form.zipcode.value
+
+            console.log('Shipping Info:', shippingInfo)
+            console.log('User Info:', userFormData)
+
+            let url = '/process_order/'
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo}),
+            })
+
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Success: ', data);
+                    alert('Transaction completed');
+                    window.location.href = "{% url 'products' %}"
+
+                })
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <style>
+        .helptext {
+            display: none;
+        }
+    </style>
+    <!-- pages-title-start -->
+    <div class="pages-title section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pages-title-text text-center">
+                        <h2>Register</h2>
+                        <ul class="text-left">
+                            <li><a href="../../core/templates/index.html">Home </a></li>
+                            <li><span> // </span>Register</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pages-title-end -->
+    <!-- login content section start -->
+    <section class="pages login-page section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="main-input padding60 new-customer">
+                        <div class="log-title">
+                            <h3><strong>new customers</strong></h3>
+                        </div>
+                        <div class="custom-input">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ register_form }}
+                                <input type="submit" name="Register" value="Register">
+                            </form>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-info display-flex align-items-center for-alert"
+                                         role="alert">
+                                        <p class="alert-p"></p>{{ message }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <br>
+                            <p><strong>-- OR --</strong></p>
+                            <p><a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a></p>
+                            <p><a href="{% url 'social:begin' 'google-oauth2' %}">Login With Google</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </section>
+    <!-- login content section end -->
+{% endblock %}

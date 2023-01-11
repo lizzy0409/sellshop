@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <!-- pages-title-start -->
+    <div class="pages-title section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pages-title-text text-center">
+                        <h2>{{ blog.title }}</h2>
+                        <ul class="text-left">
+                            <li><a href="/">Home </a></li>
+                            <li><span> // </span><a href="{% url 'blogs' %}">blogs </a></li>
+                            <li><span> // </span>{{ blog.title }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pages-title-end -->
+    <!-- blog-section-start -->
+    <section class="pages blog single-blog-area section-padding-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-9">
+                    <div class="single-blog-page">
+                        <div class="single-blog-img">
+                            <img width="900px" src="/static/img/{{ blog.image }}" alt=""/>
+                        </div>
+                        <div class="padding30">
+                            <div class="blog-text">
+                                <div class="post-title">
+                                    <h3>{{ blog.title }}</h3>
+                                    <ul class="clearfix">
+                                        <li><i class="pe-7s-user"></i>By :<a
+                                                href="#">{{ blog.author }}</a><span>|</span></li>
+                                        <li><i class="pe-7s-comment"></i><a href="#">{{ blog.published_datd }}</a><span>|</span>
+                                        </li>
+                                        <li><i class="pe-7s-like"></i><a href="#">{{ blog.no_of_likes }}
+                                            Like</a><span>|</span></li>
+                                        <li><i class="pe-7s-back"></i><a href="#">{{ blog.no_of_comments }} Comments</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="italic">
+                                    <p>{{ blog.desc }}</p>
+                                </div>
+                                <div class="share-tag clearfix">
+                                    <ul class="blog-share floatleft">
+                                        <li><h5>share </h5></li>
+                                        <li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+                                        <li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+                                        <li><a href="#"><i class="mdi mdi-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="mdi mdi-vimeo"></i></a></li>
+                                        <li><a href="#"><i class="mdi mdi-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+{#                                <div class="about-author comments">#}
+{#                                    <h4>19 comments</h4>#}
+{#                                    <div class="autohr-text">#}
+{#                                        <img src="../../static/img/blog/author2.png" alt=""/>#}
+{#                                        <div class="author-des">#}
+{#                                            <h4><a href="#">Gerald Barnes</a></h4>#}
+{#                                            <span class="floatright"><a href="#">Reply</a>  /   <a#}
+{#                                                    href="#">Hide</a></span>#}
+{#                                            <span>27 Jun, 2016 at 2:30pm</span>#}
+{#                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan#}
+{#                                                egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget#}
+{#                                                eni Praesent et messages in consectetur.</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="about-author reply">#}
+{#                                    <div class="autohr-text">#}
+{#                                        <img src="../../static/img/blog/author3.png" alt=""/>#}
+{#                                        <div class="author-des">#}
+{#                                            <h4><a href="#">Gregory Hernandez</a></h4>#}
+{#                                            <span class="floatright"><a href="#">Reply</a>  /   <a#}
+{#                                                    href="#">Hide</a></span>#}
+{#                                            <span>27 Jun, 2016 at 2:30pm</span>#}
+{#                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan#}
+{#                                                egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget#}
+{#                                                eni Praesent et messages in consectetur.</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="about-author">#}
+{#                                    <div class="autohr-text">#}
+{#                                        <img src="../../static/img/blog/author3.png" alt=""/>#}
+{#                                        <div class="author-des">#}
+{#                                            <h4><a href="#">Gregory Hernandez</a></h4>#}
+{#                                            <span class="floatright"><a href="#">Reply</a>  /   <a#}
+{#                                                    href="#">Hide</a></span>#}
+{#                                            <span>27 Jun, 2016 at 2:30pm</span>#}
+{#                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan#}
+{#                                                egestas eleifend. Phasellus a felis at est bibenes dum feugiat ut eget#}
+{#                                                eni Praesent et messages in consectetur.</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+                            </div>
+{#                            <div class="leave-comment">#}
+{#                                <h4>leave your review</h4>#}
+{#                                <form action="mail.php" method="post">#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-xs-12 col-sm-6">#}
+{#                                            <div class="input-text">#}
+{#                                                <input type="text" name="name" placeholder="Name here" value=""/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-12 col-sm-6">#}
+{#                                            <div class="input-text">#}
+{#                                                <input type="text" name="email" placeholder="Email here" value=""/>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-12">#}
+{#                                            <div class="input-text">#}
+{#                                                <textarea name="comment" id="comment" placeholder="Comment here"#}
+{#                                                          rows="4"></textarea>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="col-xs-12">#}
+{#                                            <div class="submit-text">#}
+{#                                                <button type="submit" value="submit form">submit comments</button>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </form>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                    <!-- single post end -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog section end -->
+    <!-- related post section start -->
+    <section class="related-post latest-blog section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="section-title text-center">
+                        <h2>Related Post</h2>
+                    </div>
+                </div>
+            </div>
+            <ul class="blog-row">
+                <li>
+                    <div class="row">
+                        {% for related_blog in related_blogs %}
+                            <div class="col-sm-4">
+                                <div class="l-blog-text">
+                                    <div class="banner"><a href="{% url 'singleblog' related_blog.id %}"><img
+                                            height="300px" width="495px"
+                                            src="../../static/img/{{ related_blog.image }}" alt=""/></a></div>
+                                    <div class="s-blog-text">
+                                        <h4>
+                                            <a href="{% url 'singleblog' related_blog.id %}">{{ related_blog.title }}</a>
+                                        </h4>
+                                        <span>By : <a href="#">{{ related_blog.author }}</a> | <a
+                                                href="#">{{ related_blog.no_of_likes }} Like</a> | <a
+                                                href="#">{{ related_blog.no_of_comments }} Comments</a></span>
+                                        <p>{{ related_blog.desc|slice:":150" }}</p>
+                                    </div>
+                                    <div class="date-read clearfix">
+                                        <a href="#"><i class="mdi mdi-clock"></i> {{ related_blog.published_date }}</a>
+                                        <a href="{% url 'singleblog' related_blog.id %}">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- related post section end -->
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% for product in famous_products %}
+    {% if product.status == 'SOON' %}
+
+    {% else %}
+        <div class="single-list-view">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="list-img">
+                        <div class="product-img">
+                            <div class="pro-type sell">
+                                <span>{{ product.status }}</span>
+                            </div>
+                            <a href="{% url 'single-product' product.id %}"><img
+                                    height="280px" width="260px"
+                                    src="/static/img/{{ product.image }}"
+                                    alt="Product Title"/></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-8">
+                    <div class="list-text">
+                        <h3>{{ product.title }}</h3>
+                        <span>Summer men’s fashion</span>
+                        <div class="ratting floatright">
+                            <p>( {{ product.total_rating }} Rating )</p>
+                            <i class="mdi mdi-star"></i>
+                            <i class="mdi mdi-star"></i>
+                            <i class="mdi mdi-star"></i>
+                            <i class="mdi mdi-star-half"></i>
+                            <i class="mdi mdi-star-outline"></i>
+                        </div>
+                        <h5>
+                            <del>${{ product.last_price }}</del>
+                            ${{ product.price }}</h5>
+                        <p>{{ product.desc }}</p>
+                        <div class="list-btn">
+
+
+                            <a class="update-cart"
+                               data-product="{{ product.id }}"
+                               data-action="add" href="#">add to cart</a>
+                            <a href="#">wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
