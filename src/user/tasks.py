@@ -14,7 +14,7 @@ from product.models import Product
 
 @shared_task()
 def send_mails():
-    time_thresold = datetime.datetime.now() - datetime.timedelta(minutes=1)
+    time_thresold = datetime.datetime.now() - datetime.timedelta(days=30)
     subject = "En cox sevilen 5 mehsulumuzu size teqdim edirik"
 
     user_emails = Profile.objects.filter(last_login_time__lte=time_thresold).values_list('email', flat=True)
